@@ -15,6 +15,7 @@ use App\Entity\Produit;
 use App\Entity\Recherche;
 use App\Entity\Service;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
@@ -27,7 +28,6 @@ class DashboardController extends AbstractDashboardController
 
     public function __construct(private AdminURLGenerator $adminURL)
     {
-        
     }
     #[Route('/admin', name: 'admin')]
     public function index(): Response
@@ -57,7 +57,6 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle("Fina administration")
             ->generateRelativeUrls()
             ->setTitle('Fina Admin');
     }
@@ -65,33 +64,55 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
-            MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
+            MenuItem::linkToDashboard('WebSite', 'fa fa-home'),
 
-            MenuItem::section('Configuration'),
-            MenuItem::linkToCrud('Categories', 'fa fa-tags', Categorie::class),
-            MenuItem::linkToCrud('Produits', 'fa fa-tags', Produit::class),
-            MenuItem::linkToCrud('Services', 'fa fa-tags', Service::class),
-            MenuItem::linkToCrud('Entreprise', 'fa fa-tags', Entreprise::class),
-            MenuItem::linkToCrud('MobileMoney', 'fa fa-tags', MobileMoney::class),
+            MenuItem::section('Configuration', 'fa fa-search-plus'),
+            MenuItem::subMenu('Categories')->setSubItems([
+                MenuItem::linkToCrud('Liste ', 'fa fa-tags', Categorie::class)->setAction(Crud::PAGE_INDEX),
+                MenuItem::linkToCrud('Nouveau', 'fa fa-plus-circle', Categorie::class)->setAction(Crud::PAGE_NEW),
+
+            ]),
+            MenuItem::subMenu('Produits')->setSubItems([
+                MenuItem::linkToCrud('Liste ', 'fa fa-tags', Produit::class)->setAction(Crud::PAGE_INDEX),
+                MenuItem::linkToCrud('Nouveau', 'fa fa-plus-circle', Produit::class)->setAction(Crud::PAGE_NEW),
+
+            ]),
+            MenuItem::subMenu('Services')->setSubItems([
+                MenuItem::linkToCrud('Liste ', 'fa fa-tags', Service::class)->setAction(Crud::PAGE_INDEX),
+                MenuItem::linkToCrud('Nouveau', 'fa fa-plus-circle', Service::class)->setAction(Crud::PAGE_NEW),
+
+            ]),
+            MenuItem::section('Modes de paiement'),
+            MenuItem::subMenu('Mobile Money')->setSubItems([
+                MenuItem::linkToCrud('Liste ', 'fa fa-tags', MobileMoney::class)->setAction(Crud::PAGE_INDEX),
+                MenuItem::linkToCrud('Nouveau', 'fa fa-plus-circle', MobileMoney::class)->setAction(Crud::PAGE_NEW),
+
+            ]),
+            
+            MenuItem::section('Gestion des utilisateurs'),
+            MenuItem::subMenu('Utilisateurs')->setSubItems([
+                MenuItem::linkToCrud('Liste ', 'fa fa-tags', User::class)->setAction(Crud::PAGE_INDEX),
+                MenuItem::linkToCrud('Nouveau', 'fa fa-plus-circle', User::class)->setAction(Crud::PAGE_NEW),
+
+            ]),
             MenuItem::section('Métiers '),
-            MenuItem::linkToCrud('Achats', 'fa fa-tags', Achat::class),
-            MenuItem::linkToCrud('Annulations', 'fa fa-tags', Annulation::class),
-            MenuItem::linkToCrud('MewsLetters ', 'fa fa-tags', NewsLetter::class),
-            MenuItem::linkToCrud('Contacts', 'fa fa-tags', Contact::class),
-            MenuItem::linkToCrud('Clients', 'fa fa-tags', Client::class),
-            MenuItem::linkToCrud('Recherches ', 'fa fa-tags', Recherche::class),
+            MenuItem::subMenu('Liste des éléments ')->setSubItems([
+                MenuItem::linkToCrud('Achats', 'fa fa-tags', Achat::class),
+                MenuItem::linkToCrud('Annulations', 'fa fa-tags', Annulation::class),
+                MenuItem::linkToCrud('NewsLetters ', 'fa fa-tags', NewsLetter::class),
+                MenuItem::linkToCrud('Contacts', 'fa fa-tags', Contact::class),
+                MenuItem::linkToCrud('Clients', 'fa fa-tags', Client::class),
+                MenuItem::linkToCrud('Recherches ', 'fa fa-tags', Recherche::class),
 
-            MenuItem::section('Statistiques'),
-            MenuItem::linkToCrud('Achats', 'fa fa-tags', Achat::class),
-            MenuItem::linkToCrud('Annualtion', 'fa fa-tags', Annulation::class),
+            ]),
+            MenuItem::section('Infos entreprise'),
+            MenuItem::linkToCrud('Entreprise', 'fa fa-tags', Entreprise::class),
+            // MenuItem::section('Statistiques'),
+            // MenuItem::linkToCrud('Achats', 'fa fa-tags', Achat::class),
+            // MenuItem::linkToCrud('Annualtion', 'fa fa-tags', Annulation::class),
 
             // MenuItem::linkToCrud('Blog Posts', 'fa fa-file-text', BlogPost::class),
 
-            MenuItem::section('Users'),
-            // MenuItem::linkToCrud('Comments', 'fa fa-comment', Comment::class),
-            MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
         ];
-
-        
     }
 }

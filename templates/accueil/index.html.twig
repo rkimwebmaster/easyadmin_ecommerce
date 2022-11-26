@@ -1,20 +1,70 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Basic -->
+		<meta charset="utf-8"/>
+		<meta
+		http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<!-- Mobile Metas -->
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<!-- Site Metas -->
+		<meta name="keywords" content="Electroniques, Qualité, Produits "/>
+		<meta name="description" content=""/>
+		<meta name="author" content="Marcus R. Kimba from Webtronblue "/>
+		<link rel="shortcut icon" href="images/favicon.png" type="">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+		<title>
+			{% block title %}Fina Shop - DRC
+			{% endblock %}
+		</title>
+		<!-- bootstrap core css -->
+		<link
+		rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}"/>
+		<!-- font awesome style -->
+		<link
+		href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet"/>
+		<!-- Custom styles for this template -->
+		<link
+		href="{{asset('css/style.css')}}" rel="stylesheet"/>
+		<!-- responsive style -->
+		<link href="{{asset('css/responsive.css')}}" rel="stylesheet"/>
+	</head>
+	<body>
+		<div class="hero_area">
+			{% include '_partials/_header.html.twig' %}
+			{% include '_partials/_slider.html.twig' %}
+		</div>
+		{% block body %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+			{% include '_partials/_why.html.twig' %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+			{% include '_partials/_arrival.html.twig' %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/finadmin/src/Controller/AccueilController.php'|file_link(0) }}">src/Controller/AccueilController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/finadmin/templates/accueil/index.html.twig'|file_link(0) }}">templates/accueil/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+			{% include '_partials/_product.html.twig' %}
+
+			{% include '_partials/_subscribe.html.twig' %}
+
+			{% include '_partials/_client.html.twig' %}
+
+		{% endblock %}
+
+		{% include '_partials/_footer.html.twig' %}
+
+		
+		<!-- jQery -->
+		<script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+		<!-- popper js -->
+		<script src="{{asset('js/popper.min.js')}}"></script>
+		<!-- bootstrap js -->
+		<script src="{{asset('js/bootstrap.js')}}"></script>
+		<!-- custom js -->
+		<script src="{{asset('js/custom.js')}}"></script>
+	</body>
+</html>

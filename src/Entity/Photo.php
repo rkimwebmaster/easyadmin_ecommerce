@@ -17,12 +17,6 @@ class Photo
     #[ORM\Column(length: 255)]
     private ?string $url = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $titre = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
-
     #[ORM\ManyToOne(inversedBy: 'photos')]
     private ?Produit $produit = null;
 
@@ -31,6 +25,12 @@ class Photo
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    public function __construct()
+    {
+        $this->createdAt=new \DateTimeImmutable();
+        $this->updatedAt= new \DateTimeImmutable();
+    }
 
     
     public function getCreatedAt(): ?\DateTimeImmutable

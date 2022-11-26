@@ -29,6 +29,10 @@ class LigneAchat
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'ligneAchats')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Achat $achat = null;
+
     
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -91,6 +95,18 @@ class LigneAchat
     public function setTotalLigne(float $totalLigne): self
     {
         $this->totalLigne = $totalLigne;
+
+        return $this;
+    }
+
+    public function getAchat(): ?Achat
+    {
+        return $this->achat;
+    }
+
+    public function setAchat(?Achat $achat): self
+    {
+        $this->achat = $achat;
 
         return $this;
     }

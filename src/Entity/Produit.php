@@ -22,10 +22,10 @@ class Produit
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Video $video = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $urlVideoYoutube = null;
 
-    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Photo::class)]
+    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Photo::class, cascade: ["persist"])]
     private Collection $photos;
 
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'produits')]
@@ -301,6 +301,18 @@ class Produit
     public function setIsBestSelling(bool $isBestSelling): self
     {
         $this->isBestSelling = $isBestSelling;
+
+        return $this;
+    }
+
+    public function getUrlVideoYoutube(): ?string
+    {
+        return $this->urlVideoYoutube;
+    }
+
+    public function setUrlVideoYoutube(?string $urlVideoYoutube): self
+    {
+        $this->urlVideoYoutube = $urlVideoYoutube;
 
         return $this;
     }

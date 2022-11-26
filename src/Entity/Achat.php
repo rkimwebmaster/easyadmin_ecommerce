@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AchatRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -54,6 +56,16 @@ class Achat
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'achat', targetEntity: LigneAchat::class, orphanRemoval: true)]
+    private Collection $ligneAchats;
+
+    public function __construct()
+    {
+        $this->dateLivraison=new \DateTimeImmutable();
+        $this->createdAt=new \DateTimeImmutable();
+        $this->ligneAchats = new ArrayCollection();
+    }
 
     
     public function getCreatedAt(): ?\DateTimeImmutable
@@ -213,6 +225,36 @@ class Achat
     public function setIsLivre(bool $isLivre): self
     {
         $this->isLivre = $isLivre;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LigneAchat>
+     */
+    public function getLigneAchats(): Collection
+    {
+        return $this->ligneAchats;
+    }
+
+    public function addLigneAchat(LigneAchat $ligneAchat): self
+    {
+        if (!$this->ligneAchats->contains($ligneAchat)) {
+            $this->ligneAchats->add($ligneAchat);
+            $ligneAchat->setAchat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLigneAchat(LigneAchat $ligneAchat): self
+    {
+        if ($this->ligneAchats->removeElement($ligneAchat)) {
+            // set the owning side to null (unless already changed)
+            if ($ligneAchat->getAchat() === $this) {
+                $ligneAchat->setAchat(null);
+            }
+        }
 
         return $this;
     }

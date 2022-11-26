@@ -8,11 +8,13 @@
 {% endblock %}
 {% block lesboutons %}
 
-	<a  href="{{path('app_user_index')}}" title="Retour à la liste " class="btn btn-info btn-sm">
+	<a href="{{path('app_user_index')}}" title="Retour à la liste " class="btn btn-info btn-sm">
 		<i class="fa fa-reply-all"></i>
 		Rétour
 	</a>
 {% endblock %}
+{% block hero %}{% endblock %}
+
 {% block body %}
 	{{ form_start(registrationForm) }}
 	{{ form_row(registrationForm.email) }}
