@@ -82,13 +82,18 @@ class AccueilController extends AbstractController
         ]);
     }
 
-    #[Route('/creationNewsLetter', name: 'app_creationNewsLetter')]
-    public function creationNewsLetter(Request $request, NewsLetterRepository $newsLetterRepository): void
+    #[Route('/creationNewsLetter', name: 'app_creationNewsLetter', methods:'GET')]
+    public function creationNewsLetter(Request $request, NewsLetterRepository $newsLetterRepository): Response
     {
+
+        $email=$request->get('email');
+        // $route=$request->get('route');
+        // dd($route);
         $newsLetter = new NewsLetter();
+        $newsLetter->setEmail($email);
         $newsLetterRepository->save($newsLetter, true);
-        // return $this->redirectToRoute('app_news_letter_index', [], Response::HTTP_SEE_OTHER);
         $this->addFlash("success", "Merci pour votre inscription à la newsletter.");
+        return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
         // return $this->redirect();
     }
 
@@ -135,5 +140,16 @@ class AccueilController extends AbstractController
         return $this->render('accueil/termeConditions.html.twig', [
         ]);
     }
+
+    
+    #[Route('/policy', name: 'app_policy')]
+    public function policy(): Response
+    {
+        return $this->render('accueil/policy.html.twig', [
+        ]);
+    }
+
+    
+    
 
 }

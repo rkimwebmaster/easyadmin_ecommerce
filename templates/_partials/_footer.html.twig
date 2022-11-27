@@ -38,19 +38,19 @@
 						Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
 					</p>
 					<div class="footer_social">
-						<a href="">
+						<a href="https://www.facebook.com/finaSarl">
 							<i class="fa fa-facebook" aria-hidden="true"></i>
 						</a>
-						<a href="">
+						<a href="https://www.facebook.com/finaSarl">
 							<i class="fa fa-twitter" aria-hidden="true"></i>
 						</a>
-						<a href="">
+						<a href="https://www.facebook.com/finaSarl">
 							<i class="fa fa-linkedin" aria-hidden="true"></i>
 						</a>
-						<a href="">
+						<a href="https://www.facebook.com/finaSarl">
 							<i class="fa fa-instagram" aria-hidden="true"></i>
 						</a>
-						<a href="">
+						<a href="https://www.facebook.com/finaSarl">
 							<i class="fa fa-pinterest" aria-hidden="true"></i>
 						</a>
 					</div>
@@ -98,7 +98,7 @@
 									<h3>Menu</h3>
 									<ul>
 										<li><a href="#">Home</a></li>
-										<li><a href="#">About</a></li>
+										<li><a href="{{url('app_policy')}}">Policy</a></li>
 										<li><a href="{{url('app_garantie_remboursement')}}">Garantie de remboursements</a></li>
 										<li><a href="#">Témoignages</a></li>
 										<li><a href="#">Blog</a></li>
@@ -128,7 +128,7 @@
 								<p>Souscrire  à notre newsletter et obtenez les mises à jours d'arrivage</p>
 							</div>
 							<div class="form_sub">
-								<form>
+								<form action="{{url('app_creationNewsLetter')}}" method='get'>
 									<fieldset>
 										<div class="field">
 											<input type="email" placeholder="Entrer votre adressse mail " name="email"/>

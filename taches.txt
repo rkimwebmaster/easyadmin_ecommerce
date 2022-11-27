@@ -1,0 +1,52 @@
+separer la base de la page d'accueil 
+implemeneter le template famms fashion 
+recuperer la ligne du haut du 1er template pour garder en permannece l'utilisateur connecté , le bouton de connexion , le 
+lien vers le panier , le lien vers les soldes, les numeros de contacts et le services support 
+
+preparer le design de la pages panier et suite de paiement plus le choix du canal de paiement effcetué, a chaque canal 
+correpondra le numero renseigner par l'admin pour ce mobile money 
+
+implementer les notofications apres paiement ( via mail notamment et navigateur ) 
+
+c'est apres creation du panier qu'interviendra le choix du mobile mmoney et l'inscription du numero 
+de reference tout en verifiant l'authentification préalable 
+
+check: comment heriter d'une page twig tout en retirant certains includes 
+
+remettre la bar du haut qui montre les raccourcis 
+
+donner la possibilité aux client d'implementer les commentaires que les admins doivent valider avant publications 
+
+commentaires (#userClient, commentaire, fonction par defaut client, longieur du texte minimal exigé )
+
+ce sont les derniers 3 commentaires qui s'affichent 
+
+gerer l'authentification et la connexion des clients 
+
+implementer la page caisse ou on inscrit le code de confirmation de paiement 
+
+sur ihm admin signaler a l'adminisrateur que les images produits doivent etre bien traité en vue de respecter un certain standard de design
+
+le logo fina doit etre en png couleur rougeatre ou autre, arriere plan transparent 
+
+
+
+
+
+
+les taches primordiales 
+- harmoniser la vue des shopping 
+	l'entete 
+	le bas de page 
+	simulation des produit 
+	integrer la bd mysql 
+communiquer le lien 
+passer en phase deux 
+integrer les documents legaux et autres liens utiles 
+soumettre de preference a des testeurs ( Akim) 
+	
+
+les parties du template shopping cote client 
+
+le main menu 
+top_middle 

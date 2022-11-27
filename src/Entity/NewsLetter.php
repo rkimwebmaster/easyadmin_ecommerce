@@ -22,8 +22,14 @@ class NewsLetter
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true)]
     private ?string $ipAdress = null;
+
+    public function __construct()
+    {
+        $this->createdAt=new \DateTimeImmutable();
+        $this->updatedAt=new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
