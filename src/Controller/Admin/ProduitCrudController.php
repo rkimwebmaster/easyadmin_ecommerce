@@ -40,6 +40,7 @@ class ProduitCrudController extends AbstractCrudController
             IntegerField::new('qteAlerte')->hideOnIndex(),
             FormField::addTab('Caracteristiques'),
             ColorField::new('couleur')->hideOnIndex(),
+            ImageField::new('photoPrincipale')->setBasePath('uploads/images/produits/')->setUploadDir('public/uploads/images/produits/'),
             CollectionField::new('photos')->useEntryCrudForm(PhotoCrudController::class),
             // yield CollectionField::new('...')->useEntryCrudForm(CategoryCrudController::class);
 

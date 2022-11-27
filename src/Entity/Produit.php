@@ -61,6 +61,9 @@ class Produit
     #[ORM\Column]
     private ?bool $isBestSelling = null;
 
+    #[ORM\Column(length: 255, nullable: false)]
+    private ?string $photoPrincipale = null;
+
     
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -313,6 +316,18 @@ class Produit
     public function setUrlVideoYoutube(?string $urlVideoYoutube): self
     {
         $this->urlVideoYoutube = $urlVideoYoutube;
+
+        return $this;
+    }
+
+    public function getPhotoPrincipale(): ?string
+    {
+        return $this->photoPrincipale;
+    }
+
+    public function setPhotoPrincipale(?string $photoPrincipale): self
+    {
+        $this->photoPrincipale = $photoPrincipale;
 
         return $this;
     }

@@ -16,10 +16,7 @@
 							</div>
 						</div>
 						<div class="img-box">
-							{% for photo in produit.photos %}
-								{# <img src="https://127.0.0.1:8001/public/uploads/images/produits/{{photo.url}}" alt=""> #}
-								<img src="{{photo.url}}" alt="">
-							{% endfor %}
+							<img src="{{asset('uploads/images/produits/'~ produit.photoPrincipale)}}" alt="">
 						</div>
 						<div class="detail-box">
 							<h5>

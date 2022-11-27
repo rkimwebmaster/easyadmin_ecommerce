@@ -42,7 +42,7 @@ class AccueilController extends AbstractController
     public function arrivageProduits(ProduitRepository $produitRepository): Response
     {
         $produits=$produitRepository->findAll();
-        return $this->render('accueil/produits.html.twig', [
+        return $this->render('accueil/arrivages.html.twig', [
             'produits' => $produits,
         ]);
     }
@@ -52,7 +52,7 @@ class AccueilController extends AbstractController
     public function soldeProduits(ProduitRepository $produitRepository): Response
     {
         $produits=$produitRepository->findAll();
-        return $this->render('accueil/produits.html.twig', [
+        return $this->render('accueil/solde.html.twig', [
             'produits' => $produits,
         ]);
     }
@@ -119,4 +119,21 @@ class AccueilController extends AbstractController
             'produit' => $produit,
         ]);
     }
+
+    
+    #[Route('/garantieRemboursement', name: 'app_garantie_remboursement')]
+    public function garantieRemboursement(): Response
+    {
+        return $this->render('accueil/remboursement.html.twig', [
+        ]);
+    }
+
+    
+    #[Route('/termeConditions', name: 'app_terme_conditions')]
+    public function termeConditions(): Response
+    {
+        return $this->render('accueil/termeConditions.html.twig', [
+        ]);
+    }
+
 }
