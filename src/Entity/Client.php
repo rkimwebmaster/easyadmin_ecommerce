@@ -38,7 +38,6 @@ class Client
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
-
     
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -67,6 +66,8 @@ class Client
     public function __construct()
     {
         $this->achats = new ArrayCollection();
+        $this->codeClient=strtoupper(uniqid('CL-'));
+
     }
 
     public function getId(): ?int
