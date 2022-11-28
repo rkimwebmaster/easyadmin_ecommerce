@@ -35,14 +35,14 @@
 					</li>
 					{# <li class="nav-item"></li> #}
 					{% if not app.user %}
-					<li class="nav-item ">
+					{# <li class="nav-item ">
 						<a class="nav-link text-danger" href="{{url('app_contact')}}">
 						<span class="fa fa-user text-danger"> </span> Connexion</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link text-danger" href="{{url('app_contact')}}">
 						<span class="fa fa-user text-danger"> </span> Création de compte </a>
-					</li>
+					</li> #}
 					{% endif %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{url('app_contact')}}">
@@ -54,6 +54,23 @@
 							<span class="badge badge-info text-sm badge-sm">56</span>
 						</span>
 						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle bg-warning text-white" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+							<span class="nav-label"> <span class="fa fa-users text-danger"> </span> Comptes
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									{# <a href="{{url('app_services')}}">Services</a> #}
+									<a href="{{url('app_register')}}">Création</a>
+								</li>
+								<li>
+									{# <a href="{{url('app_services')}}">Services</a> #}
+									<a href="{{url('app_login')}}">Connexion</a>
+								</li>
+							</ul>
+						</li>
 					</li>
 				</ul>
 			</div>
