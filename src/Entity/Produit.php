@@ -64,6 +64,9 @@ class Produit
     #[ORM\Column(length: 255, nullable: false)]
     private ?string $photoPrincipale = null;
 
+    #[ORM\Column]
+    private ?bool $isSolde = null;
+
     
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -328,6 +331,18 @@ class Produit
     public function setPhotoPrincipale(?string $photoPrincipale): self
     {
         $this->photoPrincipale = $photoPrincipale;
+
+        return $this;
+    }
+
+    public function isIsSolde(): ?bool
+    {
+        return $this->isSolde;
+    }
+
+    public function setIsSolde(bool $isSolde): self
+    {
+        $this->isSolde = $isSolde;
 
         return $this;
     }

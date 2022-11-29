@@ -5,19 +5,19 @@
 			<div class="col-md-4 footer-col">
 				<div class="footer_contact">
 					<h4>
-						Reach at..
+						Siège social
 					</h4>
 					<div class="contact_link_box">
 						<a href="">
 							<i class="fa fa-map-marker" aria-hidden="true"></i>
 							<span>
-								Location
+								No 301, Av. Lac Kipopo, en face de Allilac, Commune de Lubumbashi, Ville de Lubumbashi , RDC
 							</span>
 						</a>
 						<a href="">
 							<i class="fa fa-phone" aria-hidden="true"></i>
 							<span>
-								Call +243 97 89 24 080
+								Call +243 824 458 059
 							</span>
 						</a>
 						<a href="">
@@ -35,7 +35,7 @@
 						FINA sarl
 					</a>
 					<p>
-						Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
+						Nous choisir c'est la solution adaptée à vos besoins réels et dircets. Economiser votre temps et encourager l'entrepreunariat local est notre but.
 					</p>
 					<div class="footer_social">
 						<a href="https://www.facebook.com/finaSarl">
@@ -73,19 +73,28 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="full">
-					<div class="logo_footer">
-						<a href="#"><img width="210" src="images/logo.png" alt="#"/></a>
-					</div>
 					<div class="information_f">
 						<p>
-							<strong>ADDRESS:</strong>
-							28 avenue Kidicho, Allilac center, Lubumbashi - DRC</p>
+							<strong>ADDRESS L'shi:</strong>
+							301 avenue Lac Kipopo, Allilac Center, Lubumbashi - DRC
+						</p>
+						<p>
+							<strong>ADDRESS Kinshasa:</strong>
+							28 Av. Mbomu, Barumbu, Kinshasa - DRC
+						</p>
+						<p>
+							<strong>ADDRESS Kikwit:</strong>
+							288 Bld. KAbila, Lukolela, Kikwit - DRC
+						</p>
 						<p>
 							<strong>TELEPHONE:</strong>
-							+243 97 89 24 080</p>
+							+243 824 458 059</p>
 						<p>
 							<strong>EMAIL:</strong>
 							info@finasarl.com</p>
+					</div>
+					<div class="logo_footer">
+						<a href="#"><img width="210" src="{{asset('images/logo.png')}}" alt="#"/></a>
 					</div>
 				</div>
 			</div>
@@ -95,27 +104,36 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="widget_menu">
-									<h3>Menu</h3>
+									<h3 class="mb-0">Liens utiles </h3>
 									<ul>
-										<li><a href="#">Home</a></li>
+										<li><a href="{{url('app_accueil')}}">Accueil</a></li>
 										<li><a href="{{url('app_policy')}}">Policy</a></li>
 										<li><a href="{{url('app_garantie_remboursement')}}">Garantie de remboursements</a></li>
-										<li><a href="#">Témoignages</a></li>
-										<li><a href="#">Blog</a></li>
-										<li><ahref="{{url('app_contact')}}">Contact</a></li>
+										{# {# <li><a href="#">Témoignages</a></li> #}
+										<li><a href="{{url('app_qsn')}}">Qui sommes-nous</a></li> 
+										<li><a href="{{url('app_contact')}}">Contact</a></li>
 									</ul>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="widget_menu">
-									<h3>Account</h3>
-									<ul>
-										<li><a href="#">Account</a></li>
-										<li><a href="#">Checkout</a></li>
-										<li><a href="{{url('admin')}}">Login</a></li>
-										<li><a href="#">Register</a></li>
-										<li><a href="#">Shopping</a></li>
-										<li><a href="#">Widget</a></li>
+									<h3 class="mb-0 ">Account</h3>
+									<ul class="pb-4 mb-4 pt-0 mt-0">
+										{# <li><a href="#">Account</a></li>
+										<li><a href="#">Checkout</a></li> #}
+										<li><ahref="{{url('admin')}}">Login</a></li>
+										<li><a href="{{url('app_client_new')}}">Register</a></li>
+										{# <li><a href="#">Shopping</a></li>
+										<li><a href="#">Widget</a></li> #}
+									</ul>
+									<h3 class="mb-0 mt-4 pt-4 " >A propos de nous </h3>
+									<ul >
+										{# <li><a href="#">Account</a></li>
+										<li><a href="#">Checkout</a></li> #}
+										<li><ahref="#">Partenaires </a></li>
+										<li><a href="#">Réalisations </a></li>
+										{# <li><a href="#">Shopping</a></li>
+										<li><a href="#">Widget</a></li> #}
 									</ul>
 								</div>
 							</div>
@@ -123,7 +141,7 @@
 					</div>
 					<div class="col-md-5">
 						<div class="widget_menu">
-							<h3>Newsletter</h3>
+							<h3 class="mb-0">Newsletter</h3>
 							<div class="information_f">
 								<p>Souscrire  à notre newsletter et obtenez les mises à jours d'arrivage</p>
 							</div>

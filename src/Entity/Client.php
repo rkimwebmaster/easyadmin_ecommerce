@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
+#[ORM\HasLifecycleCallbacks()]
 class Client
 {
     #[ORM\Id]
@@ -36,8 +37,18 @@ class Client
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function misAJour(){
+        $this->email=$this->getAdresse()->getEmail();
+    }
     
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -67,6 +78,8 @@ class Client
     {
         $this->achats = new ArrayCollection();
         $this->codeClient=strtoupper(uniqid('CL-'));
+        $this->createdAt=new \DateTimeImmutable();
+        
 
     }
 
@@ -149,6 +162,18 @@ class Client
                 $achat->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

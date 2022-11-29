@@ -60,8 +60,9 @@ class Achat
     #[ORM\OneToMany(mappedBy: 'achat', targetEntity: LigneAchat::class, orphanRemoval: true)]
     private Collection $ligneAchats;
 
-    public function __construct()
+    public function __construct(Client $client)
     {
+        $this->client=$client;
         $this->dateLivraison=new \DateTimeImmutable();
         $this->createdAt=new \DateTimeImmutable();
         $this->ligneAchats = new ArrayCollection();

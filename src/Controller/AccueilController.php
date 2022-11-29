@@ -20,8 +20,8 @@ class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil')]
     public function index(ProduitRepository $produitRepository, ServiceRepository $serviceRepository): Response
     {
-        $produits=$produitRepository->findAll();
-        $services=$serviceRepository->findAll();
+        $produits = $produitRepository->findAll();
+        $services = $serviceRepository->findAll();
         return $this->render('accueil/index.html.twig', [
             'produits' => $produits,
             'services' => $services,
@@ -31,29 +31,46 @@ class AccueilController extends AbstractController
     #[Route('/produits', name: 'app_produits')]
     public function produits(ProduitRepository $produitRepository): Response
     {
-        $produits=$produitRepository->findAll();
+        $produits = $produitRepository->findAll();
         return $this->render('accueil/produits.html.twig', [
             'produits' => $produits,
         ]);
     }
 
-    
+
     #[Route('/arrivageProduits', name: 'app_arrivage_produits')]
     public function arrivageProduits(ProduitRepository $produitRepository): Response
     {
-        $produits=$produitRepository->findAll();
+        $produits = $produitRepository->findBy(['isArrivage'=>true]);
         return $this->render('accueil/arrivages.html.twig', [
             'produits' => $produits,
         ]);
     }
 
-    
+
     #[Route('/soldeProduits', name: 'app_solde_produits')]
     public function soldeProduits(ProduitRepository $produitRepository): Response
     {
-        $produits=$produitRepository->findAll();
+        $produits = $produitRepository->findBy(['isSolde'=>true]);
         return $this->render('accueil/solde.html.twig', [
             'produits' => $produits,
+        ]);
+    }
+
+    #[Route('/bestSelling', name: 'app_best_selling')]
+    public function bestSelling(ProduitRepository $produitRepository): Response
+    {
+        $produits = $produitRepository->findBy(['isBestSelling'=>true]);
+        return $this->render('accueil/bestSelling.html.twig', [
+            'produits' => $produits,
+        ]);
+    }
+
+    
+    #[Route('/qsn', name: 'app_qsn')]
+    public function qsn(ProduitRepository $produitRepository): Response
+    {
+        return $this->render('accueil/qsn.html.twig', [
         ]);
     }
 
@@ -74,21 +91,19 @@ class AccueilController extends AbstractController
         ]);
     }
 
-    #[Route('/panier', name: 'app_panier')]
-    public function panier(): Response
-    {
-        return $this->render('accueil/panier.html.twig', [
-            'controller_name' => 'AccueilController',
-        ]);
-    }
+    
 
-    #[Route('/creationNewsLetter', name: 'app_creationNewsLetter', methods:'GET')]
+    #[Route('/creationNewsLetter', name: 'app_creationNewsLetter', methods: 'GET')]
     public function creationNewsLetter(Request $request, NewsLetterRepository $newsLetterRepository): Response
     {
 
-        $email=$request->get('email');
-        // $route=$request->get('route');
-        // dd($route);
+        $email = $request->get('email');
+        // verifier doublon
+        $check = $newsLetterRepository->findBy(['email' => $email]);
+        if ($check) {
+            $this->addFlash("info", "Merci vous êtes déja dans le système.");
+            return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
+        }
         $newsLetter = new NewsLetter();
         $newsLetter->setEmail($email);
         $newsLetterRepository->save($newsLetter, true);
@@ -97,15 +112,20 @@ class AccueilController extends AbstractController
         // return $this->redirect();
     }
 
-    #[Route('/creationContact', name: 'app_creationContact')]
-    public function creationContact(Request $request, ContactRepository $contactRepository): void
+    #[Route('/creationContact', name: 'app_creationContact', methods:['GET'])]
+    public function creationContact(Request $request, ContactRepository $contactRepository): Response
     {
-        $contact = new Contact();
+        $nom=$request->get('nom');
+        $email=$request->get('email');
+        $sujet=$request->get('sujet');
+        $message=$request->get('message');
+        $telephone=$request->get('telephone');
+        $contact = new Contact($nom, $email, $telephone, $sujet, $message);
         $contactRepository->save($contact, true);
 
         // return $this->redirectToRoute('app_news_letter_index', [], Response::HTTP_SEE_OTHER);
-        $this->addFlash("success", "Merci pour votre inscription à la newsletter.");
-        // return $this->redirect();
+        $this->addFlash("success", "Merci pour votre inscription.");
+        return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/detailService/{id}', name: 'app_service_show', methods: ['GET'])]
@@ -116,7 +136,7 @@ class AccueilController extends AbstractController
         ]);
     }
 
-    
+
     #[Route('/detailProduit/{id}', name: 'app_produit_show', methods: ['GET'])]
     public function detailProduit(Produit $produit): Response
     {
@@ -125,31 +145,24 @@ class AccueilController extends AbstractController
         ]);
     }
 
-    
+
     #[Route('/garantieRemboursement', name: 'app_garantie_remboursement')]
     public function garantieRemboursement(): Response
     {
-        return $this->render('accueil/remboursement.html.twig', [
-        ]);
+        return $this->render('accueil/remboursement.html.twig', []);
     }
 
-    
+
     #[Route('/termeConditions', name: 'app_terme_conditions')]
     public function termeConditions(): Response
     {
-        return $this->render('accueil/termeConditions.html.twig', [
-        ]);
+        return $this->render('accueil/termeConditions.html.twig', []);
     }
 
-    
+
     #[Route('/policy', name: 'app_policy')]
     public function policy(): Response
     {
-        return $this->render('accueil/policy.html.twig', [
-        ]);
+        return $this->render('accueil/policy.html.twig', []);
     }
-
-    
-    
-
 }

@@ -3,12 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Achat;
+use App\Entity\LigneAchat;
 use App\Form\AchatType;
 use App\Repository\AchatRepository;
+use App\Repository\ClientRepository;
+use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/achat')]
@@ -23,10 +27,38 @@ class AchatController extends AbstractController
     }
 
     #[Route('/new', name: 'app_achat_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(SessionInterface $session,ClientRepository $clientRepository, ProduitRepository $produitRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $achat = new Achat();
+        $user=$this->getUser();
+        if(!$user){
+            $this->addFlash("info", "Prière de vous connectez avant de confirmer votre achat");
+            return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
+
+        }
+        $email=$user->getEmail();
+        $client=$clientRepository->findOneBy(['email'=>$email]);
+        $achat = new Achat($client);
         //ici on recupere la session et on initialise les données dans l'achat 
+        $panier=$session->get('panier',[]);
+        $dataPanier=[];
+        $total=0;
+        foreach($panier as $id=>$quantite){
+            $produit=$produitRepository->find($id);
+            $dataPanier[]=[
+                'produit'=>$produit,
+                'quantite'=>$quantite,
+            ];
+            $total +=$produit->getPrixVente() * $quantite;
+            $ligneAchat= new LigneAchat();
+            $ligneAchat->setProduit($produit);
+            $ligneAchat->setQuantite($quantite);
+            $ligneAchat->setTotalLigne($quantite * $produit->getPrixVente());
+            $achat->addLigneAchat($ligneAchat);
+        }
+        ///initialiser l objet achat 
+        $achat->setPrixTotal($total);
+
+        ////
         $form = $this->createForm(AchatType::class, $achat);
         $form->handleRequest($request);
 

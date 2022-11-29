@@ -23,7 +23,7 @@ class Contact
     #[ORM\Column(length: 255)]
     private ?string $sujet = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true )]
     private ?string $telephone = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -32,8 +32,17 @@ class Contact
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    public function __construct($nom, $email,$telephone, $sujet, $message){
+        $this->nom=$nom;
+        $this->email=$email;
+        $this->telephone=$telephone;
+        $this->sujet=$sujet;
+        $this->message=$message;     
+        $this->createdAt=new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {

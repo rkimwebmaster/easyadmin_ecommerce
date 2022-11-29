@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Client{% endblock %}
+{% block title %}New Client
+{% endblock %}
+{% block innerPage %} Créez votre compte client  {% endblock %}
 
 {% block body %}
-    <h1>Create new Client</h1>
+	<section class="why_section layout_padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2">
+					<div class="full">
+						{{ include('client/_form.html.twig') }}
 
-    {{ include('client/_form.html.twig') }}
+						<a href="{{ path('app_client_index') }}">Retour à la liste </a>
 
-    <a href="{{ path('app_client_index') }}">back to list</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 {% endblock %}

@@ -12,11 +12,14 @@ class ClientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('codeClient')
+            ->add('codeClient', null, [
+                'disabled'=>true,
+                'help'=>"Bien retenir ce code, il vous servira dans le future.",
+            ])
             // ->add('createdAt')
             // ->add('updatedAt')
-            ->add('identite')
-            ->add('adresse')
+            ->add('identite', IdentiteType::class)
+            ->add('adresse', AdresseType::class)
             // ->add('utilisateur')
         ;
     }

@@ -41,13 +41,17 @@ class ClientController extends AbstractController
 
 
             $user = $this->creationUser($client, $userPasswordHasher, $entityManager);
+            if($user->getEmail()===null){
+                return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
+
+            }
 
 
             $entityManager->persist($user);
-            $entityManager->persist($client);
+            $entityManager->persist($client->setUtilisateur($user));
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_client_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('client/new.html.twig', [
@@ -99,9 +103,9 @@ class ClientController extends AbstractController
         $user = new User();
         $user->setRoles(['ROLE_CLIENT']);
         $checkUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
-        if (!$checkUser) {
+        if ($checkUser) {
             $this->addFlash('danger', 'Un utilisateur existe déja avec la même adresse mail.');
-            return $this->redirectToRoute('app_accueil');
+            return $user;
         }
         $user->setEmail($email);
         $password = uniqid('CL-');
@@ -113,7 +117,7 @@ class ClientController extends AbstractController
             )
         );
         // dd('test');
-        $entityManager->persist($user);
+        // $entityManager->persist($user);
         // $entityManager->flush();
         $this->addFlash('success', 'Vous êtes enregistré comme client. Login: ' . $email . ' Mot de passe : ' . $password);
         return $user;

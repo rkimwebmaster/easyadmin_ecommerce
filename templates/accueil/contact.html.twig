@@ -8,12 +8,13 @@
 				<div class="row">
 					<div class="col-lg-8 offset-lg-2">
 						<div class="full">
-							<form action="index.html">
+							<form action="{{url('app_creationContact')}}" method="get">
 								<fieldset>
-									<input type="text" placeholder="Enter your full name" name="name" required/>
-									<input type="email" placeholder="Enter your email address" name="email" required/>
-									<input type="text" placeholder="Enter subject" name="subject" required/>
-									<textarea placeholder="Enter your message" required></textarea>
+									<input type="text" placeholder="Entrer vottre nom complet" name="nom" required/>
+									<input type="email" placeholder="Entrer votre adresse email" name="email" required/>
+									<input type="telephone" placeholder="Entrer votre téléphone" name="telephone" />
+									<input type="text" placeholder="Entrer votre sujet" name="sujet" required/>
+									<textarea placeholder="Entrer votre message" name="message" required></textarea>
 									<input type="submit" value="Submit"/>
 								</fieldset>
 							</form>
