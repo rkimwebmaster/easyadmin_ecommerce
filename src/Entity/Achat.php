@@ -54,18 +54,28 @@ class Achat
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'achat', targetEntity: LigneAchat::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'achat', targetEntity: LigneAchat::class, orphanRemoval: true, cascade: ["persist"])]
     private Collection $ligneAchats;
+
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
 
     public function __construct(Client $client)
     {
         $this->client=$client;
         $this->dateLivraison=new \DateTimeImmutable();
+        $this->dateAchat=new \DateTimeImmutable();
         $this->createdAt=new \DateTimeImmutable();
         $this->ligneAchats = new ArrayCollection();
+        $this->isApprouve=false;
+        $this->isAnnule=false;
+        $this->isEnCours=false;
+        $this->isPaye=false;
+        $this->isLivre=false;
+        $this->email=$this->client->getEmail();
     }
 
     
@@ -256,6 +266,18 @@ class Achat
                 $ligneAchat->setAchat(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

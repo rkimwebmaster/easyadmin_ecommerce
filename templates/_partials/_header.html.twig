@@ -13,9 +13,10 @@
 							<span class="sr-only">(current)</span>
 						</a>
 					</li>
+
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-							<span class="nav-label">Boutiques
+							<span class="nav-label">Produits
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -32,27 +33,34 @@
 								</li>
 								<li>
 									{# <a href="{{url('app_services')}}">Services</a> #}
-									<a href="{{url('app_best_selling')}}">Meilleures ventes </a>
+									<a href="{{url('app_best_selling')}}">Meilleures ventes
+									</a>
 								</li>
 							</ul>
 						</li>
 					</li>
-					{# <li class="nav-item"></li> #}
-					{% if not app.user %}
-						{# <li class="nav-item ">
-												<a class="nav-link text-danger" href="{{url('app_contact')}}">
-												<span class="fa fa-user text-danger"> </span> Connexion</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link text-danger" href="{{url('app_contact')}}">
-												<span class="fa fa-user text-danger"> </span> Création de compte </a>
-											</li> #}
-					{% endif %}
+
 					<li class="nav-item">
-						<a class="nav-link" href="{{url('app_contact')}}">
-							Contact
+						<a class="nav-link" href="{{url('app_qsn')}}">
+							Qui sommes-nous?
 						</a>
 					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+							<span class="nav-label">Nous Contacter
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="{{url('app_contact')}}">Laissez nous un message</a>
+								</li>
+								<li>
+									{# <a href="{{url('app_services')}}">Services</a> #}
+									<a href="{{url('app_arrivage_produits')}}">Nos agents via whatsapp</a>
+								</li>
+							</ul>
+						</li>
+					
 					<li class="nav-item">
 						<a class="nav-link" href="{{url('app_panier')}}">
 							<span class="fa fa-shopping-cart fa-lg text-info">
@@ -60,6 +68,7 @@
 							</span>
 						</a>
 					</li>
+					{% if not app.user %}
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle bg-warning text-white" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
 							<span class="nav-label">
@@ -80,6 +89,10 @@
 							</ul>
 						</li>
 					</li>
+					{% else %}
+					Bonjour {{app.user}}
+					{% endif %}
+
 				</ul>
 			</div>
 		</nav>
@@ -97,6 +110,7 @@
 							<strong>
 								{# <i class="icon fas fa-ban"></i> #}
 								<span class="fa fa-shopping-cart"></span>
+								
 								{{ label|title }}
 								!</strong>
 							{{ flash }}

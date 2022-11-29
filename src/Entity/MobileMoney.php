@@ -31,6 +31,14 @@ class MobileMoney
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $numero = null;
+
+    public function __toString()
+    {
+        return $this->numero.''.$this->designation;
+    }
+
     
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -116,6 +124,18 @@ class MobileMoney
                 $achat->setMobileMoney(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNumero(): ?string
+    {
+        return $this->numero;
+    }
+
+    public function setNumero(string $numero): self
+    {
+        $this->numero = $numero;
 
         return $this;
     }

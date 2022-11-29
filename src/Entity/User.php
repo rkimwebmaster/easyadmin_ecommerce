@@ -34,6 +34,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    public function __toString()
+    {
+        $nom=explode('@', $this->email);
+        return strtoupper($nom[0]);
+    }
+
     public function __construct()
     {
         $this->createdAt=new \DateTimeImmutable();

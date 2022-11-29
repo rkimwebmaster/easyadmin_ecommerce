@@ -5,10 +5,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Application middleware de partage de fuel entre opérateurs : Fournisseurs, clients et Négociant petroliers.">
 		<meta name="keywords" content="Administration vente en ligne - ecommerce  ">
-		<meta name="author" content="Marcus R. KIM">
-    <!-- icone -->
+		<meta
+		name="author" content="Marcus R. KIM">
+		<!-- icone -->
 		<link href="{{asset('images/favicon.png')}}" rel="icon">
-		<title>FINA SARL | BACKEND 
+		<title>FINA SARL | BACKEND
 		</title>
 
 		<!-- Google Font: Source Sans Pro -->
@@ -88,15 +89,19 @@
 					</form>
 					<!-- social-auth-links -->
 					<div class="social-auth-links text-center mt-2 mb-3">
-					        <a href="#" class="btn btn-block btn-primary">
-					          <i class="fa fa-unlock mr-2"></i> J'ai oublié mon mot de passe
-					        </a>
-					        {# <a href="#" class="btn btn-block btn-danger">
-					          <i class="fab fa-google-plus mr-2"></i> Connexion via Google+
-					        </a> #}
-					      </div>
-					<p class="mb-1">
-						{# <a href="{url('app_forgot_password_request')}">J'ai oublié mon mot de passe</a> #}
+						<a href="{{url('app_client_new')}}" class="btn btn-block btn-success">
+							<i class="fa	 fa-user-plus mr-2"></i>
+							Je crée mon compte client
+						</a>
+
+						<a href="#" class="btn btn-block btn-primary">
+							<i class="fa fa-unlock mr-2"></i>
+							J'ai oublié mon mot de passe
+						</a>
+
+					</div>
+					<p
+						class="mb-1">{# <a href="{url('app_forgot_password_request')}">J'ai oublié mon mot de passe</a> #}
 					</p>
 				</div>
 				<!-- /.card-body -->
@@ -115,4 +120,3 @@
 		<script src="{{asset('dist/js/adminlte.js')}}"></script>
 	</body>
 </html>
-

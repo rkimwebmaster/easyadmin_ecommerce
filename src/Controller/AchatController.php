@@ -21,8 +21,10 @@ class AchatController extends AbstractController
     #[Route('/', name: 'app_achat_index', methods: ['GET'])]
     public function index(AchatRepository $achatRepository): Response
     {
+        $email=$this->getUser()->getEmail();
+        $achats= $achatRepository->findBy(['email'=>$email]);
         return $this->render('achat/index.html.twig', [
-            'achats' => $achatRepository->findAll(),
+            'achats' => $achats,
         ]);
     }
 
@@ -66,6 +68,7 @@ class AchatController extends AbstractController
             $entityManager->persist($achat);
             $entityManager->flush();
 
+            $this->addFlash("info","Merci d'avoir effectué votre achat. Vous serz servie dans le delai.");
             return $this->redirectToRoute('app_achat_index', [], Response::HTTP_SEE_OTHER);
         }
 

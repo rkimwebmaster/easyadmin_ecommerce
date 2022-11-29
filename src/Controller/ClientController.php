@@ -101,14 +101,14 @@ class ClientController extends AbstractController
     {
         $email = $client->getAdresse()->getEmail();
         $user = new User();
-        $user->setRoles(['ROLE_CLIENT']);
+        $user->setRoles(['ROLE_CLIENT']);        
         $checkUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
         if ($checkUser) {
             $this->addFlash('danger', 'Un utilisateur existe déja avec la même adresse mail.');
             return $user;
         }
         $user->setEmail($email);
-        $password = uniqid('CL-');
+        $password = $email.$email;
         // encode the plain password
         $user->setPassword(
             $userPasswordHasher->hashPassword(

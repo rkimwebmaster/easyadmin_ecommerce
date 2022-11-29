@@ -26,12 +26,17 @@ class LigneAchat
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'ligneAchats')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Achat $achat = null;
+
+    public function __construct()
+    {
+        $this->createdAt=new \DateTimeImmutable();
+    }
 
     
     public function getCreatedAt(): ?\DateTimeImmutable
