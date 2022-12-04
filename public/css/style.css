@@ -972,11 +972,11 @@ li.nav-item ul li a:hover, li.nav-item ul li a:focus {
     font-weight: 800;
 }
 
-/** footer **/
+/** footer **//** je channnge le padding initiale a 90 **/
 
 footer {
     background: #f8f8f8;
-    padding: 90px 0 70px;
+    padding: 20px 0 70px;
 }
 
 .logo_footer {
@@ -1119,6 +1119,22 @@ form input[type="submit"]:focus {
     font-size: 15px;
     font-weight: 400;
 }
+/* ajout de la mise en page cart indiquant nbre pruiduit*/
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.nav-link:hover, .nav-link:focus {
+  text-decoration: none;
+}
+
+.nav-link.disabled {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: default;
+}
+
 
 http://kute-themes.com/html/boutique/html/index.html
 https://template.hasthemes.com/noraure/noraure/index.html

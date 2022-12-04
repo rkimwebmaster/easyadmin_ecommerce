@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Contact;
 use App\Entity\NewsLetter;
 use App\Entity\Produit;
 use App\Entity\Service;
+use App\Repository\CategorieRepository;
 use App\Repository\ContactRepository;
 use App\Repository\NewsLetterRepository;
+use App\Repository\PageQSNRepository;
+use App\Repository\PartenaireRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\ServiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,6 +24,7 @@ class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil')]
     public function index(ProduitRepository $produitRepository, ServiceRepository $serviceRepository): Response
     {
+        
         $produits = $produitRepository->findAll();
         $services = $serviceRepository->findAll();
         return $this->render('accueil/index.html.twig', [
@@ -29,8 +34,10 @@ class AccueilController extends AbstractController
     }
 
     #[Route('/produits', name: 'app_produits')]
-    public function produits(ProduitRepository $produitRepository): Response
+    public function produits(Request $request, ProduitRepository $produitRepository): Response
     {
+        // dd($request->get('_route'));
+        
         $produits = $produitRepository->findAll();
         return $this->render('accueil/produits.html.twig', [
             'produits' => $produits,
@@ -48,38 +55,54 @@ class AccueilController extends AbstractController
     }
 
 
-    #[Route('/soldeProduits', name: 'app_solde_produits')]
-    public function soldeProduits(ProduitRepository $produitRepository): Response
+    #[Route('/productSearch', name: 'app_product_search')]
+    public function soldeProduits(Request $request, ProduitRepository $produitRepository): Response
     {
-        $produits = $produitRepository->findBy(['isSolde'=>true]);
-        return $this->render('accueil/solde.html.twig', [
+        $key=$request->get('produit');
+        $produits = $produitRepository->findOneBy(['nom'=>$key]);
+        return $this->render('accueil/produits.html.twig', [
             'produits' => $produits,
         ]);
     }
 
-    #[Route('/bestSelling', name: 'app_best_selling')]
-    public function bestSelling(ProduitRepository $produitRepository): Response
+    #[Route('/categorieProduit/{id}', name: 'app_produits_categorie')]
+    public function categorieProduit(Categorie $categorie): Response
     {
-        $produits = $produitRepository->findBy(['isBestSelling'=>true]);
-        return $this->render('accueil/bestSelling.html.twig', [
+        $produits = $categorie->getProduits();
+        return $this->render('accueil/produits.html.twig', [
             'produits' => $produits,
         ]);
     }
 
     
     #[Route('/qsn', name: 'app_qsn')]
-    public function qsn(ProduitRepository $produitRepository): Response
+    public function qsn(PageQSNRepository $pageQSNRepository, PartenaireRepository $partenaireRepository): Response
     {
+        $page=$pageQSNRepository->findOneBy([],['createdAt'=>'desc']);
+        $partenaires=$partenaireRepository->findAll([],['createdAt'=>'desc']);
         return $this->render('accueil/qsn.html.twig', [
+            'page'=>$page,
+            'partenaires'=>$partenaires,
+        ]);
+    }
+
+    
+    #[Route('/app_header', name: 'app_header')]
+    public function header(CategorieRepository $categorieRepository, ServiceRepository $serviceRepository): Response
+    {
+        
+        return $this->render('_partials/_header.html.twig', [
+            'categories'=>$categorieRepository->findAll(),
+            'services'=>$serviceRepository->findAll(),
         ]);
     }
 
 
-    #[Route('/services', name: 'app_services')]
-    public function services(): Response
+    #[Route('/services/{id}', name: 'app_service')]
+    public function services(Service $service): Response
     {
         return $this->render('accueil/services.html.twig', [
-            'controller_name' => 'AccueilController',
+            'page' => $service,
         ]);
     }
 

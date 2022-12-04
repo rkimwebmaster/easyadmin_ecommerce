@@ -38,14 +38,15 @@
 	</head>
 	<body>
 		<div class="hero_area">
-			{% include '_partials/_header.html.twig' %}
+			{# {% include '_partials/_header.html.twig' %} #}
+			{{ render( url('app_header'))}}
 			{% include '_partials/_slider.html.twig' %}
 		</div>
 		{% block body %}
 
-			{% include '_partials/_why.html.twig' %}
+			{# {% include '_partials/_why.html.twig' %} #}
 
-			{% include '_partials/_arrival.html.twig' %}
+			{# {% include '_partials/_arrival.html.twig' %} #}
 
 			{% include '_partials/_product.html.twig' %}
 

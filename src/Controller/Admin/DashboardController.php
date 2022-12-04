@@ -10,6 +10,8 @@ use App\Entity\Contact;
 use App\Entity\Entreprise;
 use App\Entity\MobileMoney;
 use App\Entity\NewsLetter;
+use App\Entity\PageQSN;
+use App\Entity\Partenaire;
 use App\Entity\Photo;
 use App\Entity\Produit;
 use App\Entity\Recherche;
@@ -75,6 +77,16 @@ class DashboardController extends AbstractDashboardController
             MenuItem::subMenu('Produits')->setSubItems([
                 MenuItem::linkToCrud('Liste ', 'fa fa-tags', Produit::class)->setAction(Crud::PAGE_INDEX),
                 MenuItem::linkToCrud('Nouveau', 'fa fa-plus-circle', Produit::class)->setAction(Crud::PAGE_NEW),
+
+            ]),
+            MenuItem::subMenu('Page Qui sommes-nous')->setSubItems([
+                MenuItem::linkToCrud('Liste ', 'fa fa-tags', PageQSN::class)->setAction(Crud::PAGE_INDEX),
+                MenuItem::linkToCrud('Nouveau', 'fa fa-plus-circle', PageQSN::class)->setAction(Crud::PAGE_NEW),
+
+            ]),
+            MenuItem::subMenu('Partenaires ')->setSubItems([
+                MenuItem::linkToCrud('Liste ', 'fa fa-tags', Partenaire::class)->setAction(Crud::PAGE_INDEX),
+                MenuItem::linkToCrud('Nouveau', 'fa fa-plus-circle', Partenaire::class)->setAction(Crud::PAGE_NEW),
 
             ]),
             MenuItem::subMenu('Services')->setSubItems([

@@ -37,10 +37,10 @@
 		<link href="{{asset('css/responsive.css')}}" rel="stylesheet"/>
 	</head>
 	<body class="sub_page">
-		<div
-			class="hero_area">
+		<div class="hero_area">
 			<!-- header section strats -->
-			{% include '_partials/_header.html.twig' %}
+			{# {% include '_partials/_header.html.twig' %} #}
+		{{ render( url('app_header'))}}
 			<!-- end header section -->
 		</div>
 		<!-- inner page section -->
@@ -50,7 +50,9 @@
 					<div class="col-md-12">
 						<div class="full">
 							<h3>
-							{% block innerPage %} Nos produits {% endblock %}
+								{% block innerPage %}
+									Nos produits
+								{% endblock %}
 							</h3>
 						</div>
 					</div>
@@ -58,41 +60,40 @@
 			</div>
 		</section>
 		<!-- end inner page section -->
-		
+
 		{% block body %}
-		{% include '_partials/_product.html.twig' %}
+			{% include '_partials/_product.html.twig' %}
 		{% endblock %}
 		<!-- end why section -->
 		<!-- arrival section -->
 		{# <section class="arrival_section">
-			<div class="container">
-				<div class="box">
-					<div class="arrival_bg_box">
-						<img src="images/arrival-bg.png" alt="">
-					</div>
-					<div class="row">
-						<div class="col-md-6 ml-auto">
-							<div class="heading_container remove_line_bt">
-								<h2>
-									#NewArrivals
-								</h2>
+					<div class="container">
+						<div class="box">
+							<div class="arrival_bg_box">
+								<img src="images/arrival-bg.png" alt="">
 							</div>
-							<p style="margin-top: 20px;margin-bottom: 30px;">
-								Vitae fugiat laboriosam officia perferendis provident aliquid voluptatibus dolorem, fugit ullam sit earum id eaque nisi hic? Tenetur commodi, nisi rem vel, ea eaque ab ipsa, autem similique ex unde!
-							</p>
-							<a href="">
-								Shop Now
-							</a>
+							<div class="row">
+								<div class="col-md-6 ml-auto">
+									<div class="heading_container remove_line_bt">
+										<h2>
+											#NewArrivals
+										</h2>
+									</div>
+									<p style="margin-top: 20px;margin-bottom: 30px;">
+										Vitae fugiat laboriosam officia perferendis provident aliquid voluptatibus dolorem, fugit ullam sit earum id eaque nisi hic? Tenetur commodi, nisi rem vel, ea eaque ab ipsa, autem similique ex unde!
+									</p>
+									<a href="">
+										Shop Now
+									</a>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</section> #}
+				</section> #}
 		<!-- end arrival section -->
 		<!-- footer section -->
 		{% include '_partials/_footer.html.twig' %}
-		<!-- jQery -->
-		<script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+		<!-- jQery --><script src="{{asset('js/jquery-3.4.1.min.js')}}"> </script>
 		<!-- popper js -->
 		<script src="{{asset('js/popper.min.js')}}"></script>
 		<!-- bootstrap js -->

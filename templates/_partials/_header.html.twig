@@ -1,8 +1,9 @@
 <!-- header section strats -->
 <header class="header_section">
 	<div class="container">
-		<nav class="navbar navbar-expand-lg custom_nav-container ">
-			<a class="navbar-brand" href="index.html"><img width="250" src="{{asset('images/logo.png')}}" alt="#"/></a>
+		<nav
+			class="navbar navbar-expand-lg custom_nav-container ">
+			{# <a class="navbar-brand" href="{{url('app_accueil')}}"><img width="250" src="{{asset('images/logo.png')}}" alt="#"/></a> #}
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class=""></span>
 			</button>
@@ -19,27 +20,35 @@
 							<span class="nav-label">Produits
 								<span class="caret"></span>
 							</a>
-							<ul class="dropdown-menu">
+							<ul class="dropdown-menu mt-0 pt-0">
 								<li>
 									<a href="{{url('app_produits')}}">Tous les Produits</a>
 								</li>
-								<li>
-									{# <a href="{{url('app_services')}}">Services</a> #}
-									<a href="{{url('app_arrivage_produits')}}">Arrivage</a>
-								</li>
-								<li>
-									{# <a href="{{url('app_services')}}">Services</a> #}
-									<a href="{{url('app_solde_produits')}}">Solde</a>
-								</li>
-								<li>
-									{# <a href="{{url('app_services')}}">Services</a> #}
-									<a href="{{url('app_best_selling')}}">Meilleures ventes
-									</a>
-								</li>
+								{% for categorie in categories %}
+									<li>
+										<a href="{{url('app_produits_categorie',{'id': categorie.id })}}">{{categorie}}
+										</a>
+									</li>
+								{% endfor %}
 							</ul>
 						</li>
 					</li>
-
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+							<span class="nav-label">Nos services
+								<span class="caret"></span>
+							</a>
+							{% if services is defined %}
+								<ul class="dropdown-menu mt-0 pt-0">
+									{% for service in services %}
+										<li>
+											<a href="{{url('app_service',{'id': service.id })}}">{{service}}</a>
+										</li>
+									{% endfor %}
+								</ul>
+							{% endif %}
+						</li>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{url('app_qsn')}}">
 							Qui sommes-nous?
@@ -55,42 +64,60 @@
 									<a href="{{url('app_contact')}}">Laissez nous un message</a>
 								</li>
 								<li>
-									{# <a href="{{url('app_services')}}">Services</a> #}
-									<a href="{{url('app_arrivage_produits')}}">Nos agents via whatsapp</a>
+									<a href="{{url('app_contact')}}">Nos agents via whatsapp</a>
 								</li>
 							</ul>
 						</li>
-					
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{url('app_panier')}}">
-							<span class="fa fa-shopping-cart fa-lg text-info">
-								<span class="badge badge-info text-sm badge-sm">56</span>
-							</span>
+							<span class="fa fa-shopping-cart fa-lg text-info"></span>
 						</a>
+						{# <a class="nav-link" data-toggle="dropdown" href="#">
+													<i class="fa fa-shopping-cart"></i>
+													<span class="badge badge-danger navbar-badge">3</span>
+												</a> #}
 					</li>
 					{% if not app.user %}
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle bg-warning text-white" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-							<span class="nav-label">
-								<span class="fa fa-users text-danger"></span>
-								Comptes
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li>
-									{# <a href="{{url('app_services')}}">Services</a> #}
-									<a href="{{url('app_client_new')}}">Création de compte
-									</a>
-								</li>
-								<li>
-									{# <a href="{{url('app_services')}}">Services</a> #}
-									<a href="{{url('app_login')}}">Connexion</a>
-								</li>
-							</ul>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle bg-warning text-white" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+								<span class="nav-label">
+									<span class="fa fa-users text-danger"></span>
+									Comptes
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+
+										<a href="{{url('app_client_new')}}">Création de compte
+										</a>
+									</li>
+									<li>
+
+										<a href="{{url('app_login')}}">Connexion</a>
+									</li>
+								</ul>
+							</li>
 						</li>
-					</li>
 					{% else %}
-					Bonjour {{app.user}}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle bg-warning text-white" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+								<span class="nav-label">
+									<span class="fa fa-users text-danger"></span>
+									Bonjour
+									{{app.user}}
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+
+										<a href="{{url('app_logout')}}">
+											<span class="fa fa-user"></span>
+											Déconnexion</a>
+									</li>
+								</ul>
+							</li>
+						</li>
 					{% endif %}
 
 				</ul>
@@ -110,13 +137,29 @@
 							<strong>
 								{# <i class="icon fas fa-ban"></i> #}
 								<span class="fa fa-shopping-cart"></span>
-								
 								{{ label|title }}
 								!</strong>
 							{{ flash }}
 						</div>
 					{% endfor %}
 				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row bg-light pt-4 ">
+	<div class="col-8 offset-2 ">
+		<div class="widget_menu text-center">
+			<div class="form_sub  ">
+				<form action="{{url('app_product_search')}}" method='get'>
+					<fieldset>
+						<div class="field">
+							<input
+							type="text" placeholder="Entrer le produit recherché " name="produit"/>
+						{# <input type="submit" value="Souscrire "/> #}
+						</div>
+					</fieldset>
+				</form>
 			</div>
 		</div>
 	</div>

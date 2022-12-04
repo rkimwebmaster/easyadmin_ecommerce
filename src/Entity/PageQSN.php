@@ -2,38 +2,35 @@
 
 namespace App\Entity;
 
-use App\Repository\ServiceRepository;
+use App\Repository\PageQSNRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ServiceRepository::class)]
-class Service
+#[ORM\Entity(repositoryClass: PageQSNRepository::class)]
+class PageQSN
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $designation = null;
-
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    private ?string $contenu = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable:true)]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {
-        $this->createdAt=new \DateTimeImmutable();
+        $this->createdAt= new \DateTimeImmutable();
     }
 
     public function __toString()
     {
-        return $this->designation;   
+        return $this->contenu;
     }
 
     public function getId(): ?int
@@ -41,26 +38,14 @@ class Service
         return $this->id;
     }
 
-    public function getDesignation(): ?string
+    public function getContenu(): ?string
     {
-        return $this->designation;
+        return $this->contenu;
     }
 
-    public function setDesignation(string $designation): self
+    public function setContenu(string $contenu): self
     {
-        $this->designation = $designation;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
+        $this->contenu = $contenu;
 
         return $this;
     }
@@ -82,7 +67,7 @@ class Service
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

@@ -7,39 +7,15 @@
 				<div class="box">
 					<div class="row">
 						<div class="col-md-12 col ml-auto">
-							<div class="heading_container remove_line_bt">
-								<h2>
-									#Description
-								</h2>
-							</div>
-							<p style="margin-top: 20px;margin-bottom: 30px;">
-							la société fina sarl est une société de droit congolais fondée en 2020. Née d'une passion pour l'electronique 
-							l'informatique et la mecanique.
-							</p>
-							<div class="heading_container remove_line_bt">
-								<h2>
-									#Notre équipe  
-								</h2>
-							</div>
-							<p style="margin-top: 20px;margin-bottom: 30px;">
-							la société fina sarl regorge multiple ressources humaines experimentés, motivés allant au dela de ses attentes.
-							</p>
-							<div class="heading_container remove_line_bt">
-								<h2>
-									#Nos domaines d'activités  
-								</h2>
-							</div>
-							<p style="margin-top: 20px;margin-bottom: 30px;">
-							<ul class="list-group">
-							<li class="list-item"> Téchnologie</li>
-							<li class="list-item"> Agro alimentaires </li>
-							<li class="list-item"> Ingénierie </li>
-							</ul>
-							Les ingénieurs et techniciens travaillent d'arrache pied pour la modernisation de votre quotidien.
-							</p>
-							<a href="{{asset('profilefina2.pdf')}}">
-								Télécharger profil
-							</a>
+						{{page}} <br />
+								<a href="{{asset('profilefina2.pdf')}}">Télécharger profil</a>
+						</div>
+						<div class="col-md-12 col ml-auto">
+						<ul class="list-group">
+						{% for partenaire in partenaires %}
+							<li class="list-itel"> {{partenaire}} </li>
+						{% endfor %}
+						</ul>
 						</div>
 					</div>
 				</div>

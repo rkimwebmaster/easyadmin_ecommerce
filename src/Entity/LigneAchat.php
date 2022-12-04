@@ -6,6 +6,7 @@ use App\Repository\LigneAchatRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LigneAchatRepository::class)]
+#[ORM\HasLifecycleCallbacks()]
 class LigneAchat
 {
     #[ORM\Id]
@@ -32,6 +33,12 @@ class LigneAchat
     #[ORM\ManyToOne(inversedBy: 'ligneAchats')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Achat $achat = null;
+
+    #[ORM\PrePersist]
+    public function misAJour(){
+        $this->produit->setQteStock($this->produit->getQteStock()+$this->getQuantite());
+    }
+    
 
     public function __construct()
     {

@@ -2,17 +2,18 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Service;
+use App\Entity\Partenaire;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class ServiceCrudController extends AbstractCrudController
+class PartenaireCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Service::class;
+        return Partenaire::class;
     }
 
     
@@ -20,7 +21,8 @@ class ServiceCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('designation'),
+            TextField::new('nom'),
+            ImageField::new('phpto')->setBasePath('uploads/images/produits/')->setUploadDir('public/uploads/images/produits/'),
             TextEditorField::new('description'),
         ];
     }

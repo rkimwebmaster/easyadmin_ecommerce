@@ -37,6 +37,10 @@ class AchatController extends AbstractController
             return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
 
         }
+        if($this->isGranted('ROLE_ADMIN')){
+            $this->addFlash("info", "Vous êtes administrateur et non client. Créez un compte client à cet effet.");
+            return $this->redirectToRoute('app_accueil', [], Response::HTTP_SEE_OTHER);   
+        }
         $email=$user->getEmail();
         $client=$clientRepository->findOneBy(['email'=>$email]);
         $achat = new Achat($client);
@@ -67,7 +71,7 @@ class AchatController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($achat);
             $entityManager->flush();
-
+            $session->set("panier",[]);
             $this->addFlash("info","Merci d'avoir effectué votre achat. Vous serz servie dans le delai.");
             return $this->redirectToRoute('app_achat_index', [], Response::HTTP_SEE_OTHER);
         }

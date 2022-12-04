@@ -15,7 +15,17 @@
 {% endblock %}
 {% block hero %}{% endblock %}
 
+{% block innerPage %}
+	Création d'un compte adminsitrateur
+{% endblock %}
+
 {% block body %}
+<!-- product section -->
+	<section class="product_section layout_padding">
+		<div class="container">
+			<div class="row">
+				<div class="col col-12">
+
 	{{ form_start(registrationForm) }}
 	{{ form_row(registrationForm.email) }}
 	{# {{ form_row(registrationForm.brochure) }} #}
@@ -24,9 +34,14 @@
         }) }}
 	{{ form_row(registrationForm.agreeTerms) }}
 
-	<button type="submit" class="btn btn-default">
+	<button type="submit" class="btn btn-default btn-primary">
 		<span class="fa fa-user">
 			Enregistrer
 		</button>
 		{{ form_end(registrationForm) }}
+
+		</div>
+		</div>
+		</div>
+		</section>
 	{% endblock %}

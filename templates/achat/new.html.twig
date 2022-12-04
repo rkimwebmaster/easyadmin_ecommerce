@@ -49,8 +49,7 @@
 							</tr>
 						</tfoot>
 					</th>
-					<td>
-					</td>
+					<td></td>
 				</th>
 			</tr>
 		</tfoot>
@@ -59,12 +58,8 @@
 <button class="btn btn-primary ">{{ button_label|default('Confirmer achat ') }}</button>
 {{ form_end(form) }}
 
-						<a href="{{url('app_panier')}}" class="btn btn-block btn-success">
-							Retour au panier</a>
+<a href="{{url('app_panier')}}" class="btn btn-block btn-success">
+	Retour au panier</a>
 <a href="{{ path('app_achat_index') }}">back to list</a>
-</div>
-</div>
-</div>
-</section>
-
+</div></div></div></section>
 {% endblock %}

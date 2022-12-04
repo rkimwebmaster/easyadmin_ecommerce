@@ -68,30 +68,51 @@
 </footer>
 <!-- footer section -->
 <!-- footer start -->
-<footer>
+<footer class=" " >
 	<div class="container">
+		<div class="row">
+			<div class="col-8 offset-2 ">
+				<div class="widget_menu text-center">
+					<h3 class="mb-0 ">Newsletter</h3>
+					<div class="information_f">
+						<p>Souscrire  à notre newsletter et obtenez les mises à jours d'arrivage</p>
+					</div>
+					<div class="form_sub  ">
+						<form action="{{url('app_creationNewsLetter')}}" method='get'>
+							<fieldset>
+								<div class="field">
+									<input type="email" placeholder="Entrer votre adressse mail " name="email"/>
+									<input type="submit" value="Souscrire "/>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="full">
 					<div class="information_f">
-						<p>
-							<strong>ADDRESS L'shi:</strong>
+						<adresse>
+							<strong class='text-upper'>Nos adresses </strong>
+							<hr />
+						</adresse>
+							<adresse>
+							<strong>Lubumbashi :</strong>
 							301 avenue Lac Kipopo, Allilac Center, Lubumbashi - DRC
-						</p>
-						<p>
-							<strong>ADDRESS Kinshasa:</strong>
+							<br/>
+						</adresse>
+						<adresse>
+							<strong>Kinshasa:</strong>
 							28 Av. Mbomu, Barumbu, Kinshasa - DRC
-						</p>
-						<p>
-							<strong>ADDRESS Kikwit:</strong>
+							<br/>
+						</adresse>
+						<adresse>
+							<strong>Kikwit:</strong>
 							288 Bld. KAbila, Lukolela, Kikwit - DRC
-						</p>
-						<p>
-							<strong>TELEPHONE:</strong>
-							+243 824 458 059</p>
-						<p>
-							<strong>EMAIL:</strong>
-							info@finasarl.com</p>
+							<br/>
+						</adresse>
 					</div>
 					<div class="logo_footer">
 						<a href="#"><img width="210" src="{{asset('images/logo.png')}}" alt="#"/></a>
@@ -104,36 +125,64 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="widget_menu">
-									<h3 class="mb-0">Liens utiles </h3>
+									<h3 class="mb-0">Navigations 
+									</h3>
 									<ul>
-										<li><a href="{{url('app_accueil')}}">Accueil</a></li>
-										<li><a href="{{url('app_policy')}}">Policy</a></li>
-										<li><a href="{{url('app_garantie_remboursement')}}">Garantie de remboursements</a></li>
+										<li>
+											<a href="{{url('app_accueil')}}">Accueil</a>
+										</li>
+										<li>
+											<a href="{{url('app_policy')}}">Arrivages </a>
+										</li>
+										<li>
+											<a href="{{url('app_garantie_remboursement')}}">Soldes </a>
+										</li>
 										{# {# <li><a href="#">Témoignages</a></li> #}
-										<li><a href="{{url('app_qsn')}}">Qui sommes-nous</a></li> 
-										<li><a href="{{url('app_contact')}}">Contact</a></li>
+										<li>
+											<a href="{{url('app_qsn')}}">Meilleures ventes</a>
+										</li>
+										<li>
+											<a href="{{url('app_qsn')}}">Qui sommes-nous?</a>
+										</li>
+										<li>
+											<a href="{{url('app_contact')}}">Laissez-nous un message </a>
+										</li>
+										<li>
+											<a href="{{url('app_contact')}}">Contact whatsapp</a>
+										</li>
 									</ul>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="widget_menu">
-									<h3 class="mb-0 ">Account</h3>
-									<ul class="pb-4 mb-4 pt-0 mt-0">
-										{# <li><a href="#">Account</a></li>
-										<li><a href="#">Checkout</a></li> #}
-										<li><ahref="{{url('admin')}}">Login</a></li>
-										<li><a href="{{url('app_client_new')}}">Register</a></li>
-										{# <li><a href="#">Shopping</a></li>
-										<li><a href="#">Widget</a></li> #}
+									<h3 class="mb-0 ">Comptes </h3>
+									<ul
+										class="pb-4 mb-4 pt-0 mt-0">
+										<li>
+											<ahref="{{url('app_login')}}">Connexion </a>
+										</li>
+										<li>
+											<a href="{{url('app_client_new')}}">Création de compte</a>
+										</li>
+										<li>
+											<a href="{{url('app_register_adm')}}">Création de compte admin</a>
+										</li>
 									</ul>
-									<h3 class="mb-0 mt-4 pt-4 " >A propos de nous </h3>
-									<ul >
-										{# <li><a href="#">Account</a></li>
-										<li><a href="#">Checkout</a></li> #}
-										<li><ahref="#">Partenaires </a></li>
-										<li><a href="#">Réalisations </a></li>
-										{# <li><a href="#">Shopping</a></li>
-										<li><a href="#">Widget</a></li> #}
+									<h3 class="mb-0 mt-4 pt-4 "> <br /><br /> A propos de nous
+									</h3>
+									<ul>
+										<li>
+											<ahref="{{url('app_qsn')}}">Partenaires
+											</a>
+										</li>
+										<li>
+											<a href="{{url('app_qsn')}}">Réalisations
+											</a>
+										</li>
+										<li>
+											<a href="{{asset('profilefina2.pdf')}}">Notre profile 
+											</a>
+										</li>
 									</ul>
 								</div>
 							</div>
@@ -141,21 +190,27 @@
 					</div>
 					<div class="col-md-5">
 						<div class="widget_menu">
-							<h3 class="mb-0">Newsletter</h3>
-							<div class="information_f">
-								<p>Souscrire  à notre newsletter et obtenez les mises à jours d'arrivage</p>
-							</div>
-							<div class="form_sub">
-								<form action="{{url('app_creationNewsLetter')}}" method='get'>
-									<fieldset>
-										<div class="field">
-											<input type="email" placeholder="Entrer votre adressse mail " name="email"/>
-											<input type="submit" value="Souscrire "/>
-										</div>
-									</fieldset>
-								</form>
-							</div>
-						</div>
+									<h3 class="mb-0">Liens utiles
+									</h3>
+									<ul>
+										<li>
+											<a href="{{url('app_accueil')}}">Privacy</a>
+										</li>
+										<li>
+											<a href="{{url('app_policy')}}">Policy</a>
+										</li>
+										<li>
+											<a href="{{url('app_garantie_remboursement')}}">Garantie de remboursements</a>
+										</li>
+										{# {# <li><a href="#">Témoignages</a></li> #}
+										<li>
+											<a href="{{url('app_qsn')}}">Qui sommes-nous</a>
+										</li>
+										<li>
+											<a href="{{url('app_contact')}}">Contact</a>
+										</li>
+									</ul>
+								</div>
 					</div>
 				</div>
 			</div>
@@ -167,7 +222,7 @@
 	<p>
 		&copy;
 		<span id="displayYear"></span>
-		Tous droit reservé
-		<a href="https://webtronblue.com">WebTronBlue WebTronIx</a>
+		Tout droit reservé
+		<a href="https://webtronblue.com">FINA SARL </a>
 	</p>
 </div>

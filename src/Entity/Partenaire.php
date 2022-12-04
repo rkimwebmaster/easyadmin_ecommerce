@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ServiceRepository;
+use App\Repository\PartenaireRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ServiceRepository::class)]
-class Service
+#[ORM\Entity(repositoryClass: PartenaireRepository::class)]
+class Partenaire
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -15,40 +15,33 @@ class Service
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $designation = null;
+    private ?string $nom = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $logo = null;
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable:true)]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
-
-    public function __construct()
-    {
-        $this->createdAt=new \DateTimeImmutable();
-    }
-
-    public function __toString()
-    {
-        return $this->designation;   
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDesignation(): ?string
+    public function getNom(): ?string
     {
-        return $this->designation;
+        return $this->nom;
     }
 
-    public function setDesignation(string $designation): self
+    public function setNom(string $nom): self
     {
-        $this->designation = $designation;
+        $this->nom = $nom;
 
         return $this;
     }
@@ -61,6 +54,18 @@ class Service
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(string $logo): self
+    {
+        $this->logo = $logo;
 
         return $this;
     }
@@ -82,7 +87,7 @@ class Service
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

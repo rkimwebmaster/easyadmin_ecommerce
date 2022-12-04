@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AchatRepository::class)]
+#[ORM\HasLifecycleCallbacks()]
 class Achat
 {
     #[ORM\Id]
@@ -61,7 +62,7 @@ class Achat
     private Collection $ligneAchats;
 
     #[ORM\Column(length: 255)]
-    private ?string $email = null;
+    private ?string $email = null;    
 
     public function __construct(Client $client)
     {
