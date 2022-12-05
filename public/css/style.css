@@ -1131,6 +1131,7 @@ form input[type="submit"]:focus {
 
 .nav-link.disabled {
   color: #6c757d;
+  
   pointer-events: none;
   cursor: default;
 }
