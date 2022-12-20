@@ -74,9 +74,9 @@
 							<span class="fa fa-shopping-cart fa-lg text-info"></span>
 						</a>
 						{# <a class="nav-link" data-toggle="dropdown" href="#">
-													<i class="fa fa-shopping-cart"></i>
-													<span class="badge badge-danger navbar-badge">3</span>
-												</a> #}
+																			<i class="fa fa-shopping-cart"></i>
+																			<span class="badge badge-danger navbar-badge">3</span>
+																		</a> #}
 					</li>
 					{% if not app.user %}
 						<li class="nav-item dropdown">
@@ -93,8 +93,9 @@
 										</a>
 									</li>
 									<li>
-
-										<a href="{{url('app_login')}}">Connexion</a>
+										<a href="#" data-toggle="modal" data-target="#connect">
+											Connectez-vous
+										</a>
 									</li>
 								</ul>
 							</li>
@@ -155,7 +156,7 @@
 					<fieldset>
 						<div class="field">
 							<input
-							type="text" placeholder="Entrer le produit recherché " name="produit"/>
+							class="text-center bold " type="text" placeholder="Entrer le produit recherché et appuyer la touche entrer " name="produit"/>
 						{# <input type="submit" value="Souscrire "/> #}
 						</div>
 					</fieldset>

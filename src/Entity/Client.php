@@ -43,6 +43,9 @@ class Client
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $password = null;
+
 
     #[ORM\PrePersist]
     #[ORM\PreUpdate]
@@ -174,6 +177,18 @@ class Client
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }
